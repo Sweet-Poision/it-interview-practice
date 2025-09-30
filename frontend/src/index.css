@@ -1,0 +1,121 @@
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Thin.ttf") format("truetype");
+    font-weight: 100;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-ThinItalic.ttf") format("truetype");
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Bold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-BoldItalic.ttf") format("truetype");
+    font-weight: 600;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Light.ttf") format("truetype");
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-LightItalic.ttf") format("truetype");
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Black.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-BlackItalic.ttf") format("truetype");
+    font-weight: 700;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "Lato";
+    src: url("./assets/fonts/Lato/Lato-Italic.ttf") format("truetype");
+    font-weight: 400;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: "callifornia";
+    src: url("./assets/fonts/Callifornia/Callifornia.otf") format("opentype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "lutfey";
+    src: url("./assets/fonts/lutfey-demo/LutfeyDEMO-Outline.otf")
+        format("opentype");
+    font-style: 400;
+    font-style: normal;
+}
+
+:root {
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    box-sizing: border-box;
+    line-height: 1.3;
+    --primary-color: #92140c;
+    --secondary-color: #e75a7c;
+    --black: #0b0014;
+    --white: #f2f7f2;
+    --gray: #2e3138;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+body {
+    background: var(--black);
+    color: var(--black);
+    margin: 0px 2em;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+}

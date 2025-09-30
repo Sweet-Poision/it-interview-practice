@@ -1,0 +1,26 @@
+.my-button-link {
+    background: rgba(46, 49, 56, 0.4);
+    color: rgba(242, 247, 242, 0.7);
+    padding: 0.5em 1.2em;
+    border-radius: 20px;
+    min-width: 60px;
+    text-align: center;
+    cursor: default;
+    text-decoration: none;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(247, 247, 247, 0.05);
+    box-shadow: 0 8px 10px rgba(255, 255, 255, 0.01);
+    transition: all 0.1s 0.01s ease;
+    cursor: none;
+}
+
+.my-button-link:hover {
+    text-decoration: none;
+    color: var(--secondary-color);
+    background: #e75a7c59;
+    border: 1px solid #e75a7c66;
+    transform: scale(1.1) translateY(-3px);
+    box-shadow: 0 12px 40px rgba(255, 0, 0, 0.2);
+    cursor: none;
+}
