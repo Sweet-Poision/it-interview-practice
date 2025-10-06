@@ -11,8 +11,20 @@
     -webkit-backdrop-filter: blur(3px);
     border: 1px solid rgba(247, 247, 247, 0.05);
     box-shadow: 0 8px 10px rgba(255, 255, 255, 0.01);
-    transition: all 0.1s 0.01s ease;
     cursor: none;
+
+    /* Hardware acceleration for better Safari performance */
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+
+    /* Smooth transition only for non-transform properties */
+    transition:
+        color 0.2s ease,
+        background 0.2s ease,
+        border 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 .my-button-link:hover {
@@ -20,7 +32,16 @@
     color: var(--secondary-color);
     background: #e75a7c59;
     border: 1px solid #e75a7c66;
-    transform: scale(1.1) translateY(-3px);
     box-shadow: 0 12px 40px rgba(255, 0, 0, 0.2);
     cursor: none;
+
+    /* Remove transform from hover to prevent conflicts with JS */
+    /* JavaScript will handle the transform animations */
+}
+
+/* Fallback for browsers that don't support will-change */
+@supports not (will-change: transform) {
+    .my-button-link {
+        transform: translateZ(0);
+    }
 }
