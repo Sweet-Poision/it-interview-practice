@@ -2,6 +2,8 @@ import logging
 
 from fastapi import APIRouter
 
+from app.models.difficulty_model import Difficulty
+from app.schema.difficulty_data_schema import DifficultyDataSchema
 from app.schema.plan_request_schema import PlanRequestSchema
 from app.schema.progress_data_scheme import ProgressDataSchema
 from app.services.plan_service import PlanService
@@ -15,20 +17,25 @@ question_service = QuestionService()
 
 router = APIRouter()
 
+
 @router.get("/questions")
 def get_questions():
     return question_service.get_all_questions()
 
 
-@router.get("/plan")
+@router.post("/plan")
 def plan_questions(time_and_difficulty: PlanRequestSchema):
     plan_service = PlanService(time_and_difficulty)
-    return plan_service.plan()
+    plan, time_utilised, time_wasted = plan_service.plan()
+    return DifficultyDataSchema(
+        difficulty_data=plan,
+        time_utilised=time_utilised,
+        time_wasted=time_wasted,
+    )
 
 
 @router.get("/questions/{question_id}")
 def get_question(question_id: str):
-
     return question_service.get_question_by_id(question_id)
 
 
