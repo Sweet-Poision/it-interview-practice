@@ -2,13 +2,13 @@ import logging
 
 from fastapi import APIRouter
 
-from app.models.difficulty_model import Difficulty
-from app.schema.difficulty_data_schema import DifficultyDataSchema
+from app.db.retriever import QuestionRepositoryRetriever
 from app.schema.plan_request_schema import PlanRequestSchema
 from app.schema.progress_data_scheme import ProgressDataSchema
 from app.services.plan_service import PlanService
 from app.services.progress_service import ProgressService
 from app.services.question_service import QuestionService
+from app.services.retriever_service import RetrieverService
 
 LOGGER = logging.getLogger(__name__)
 
@@ -26,12 +26,9 @@ def get_questions():
 @router.post("/plan")
 def plan_questions(time_and_difficulty: PlanRequestSchema):
     plan_service = PlanService(time_and_difficulty)
-    plan, time_utilised, time_wasted = plan_service.plan()
-    return DifficultyDataSchema(
-        difficulty_data=plan,
-        time_utilised=time_utilised,
-        time_wasted=time_wasted,
-    )
+    retriever_service = RetrieverService(plan_service)
+    db_retriever = QuestionRepositoryRetriever()
+    return retriever_service.retrieve(db_retriever)
 
 
 @router.get("/questions/{question_id}")
