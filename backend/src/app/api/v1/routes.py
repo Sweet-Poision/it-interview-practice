@@ -18,12 +18,12 @@ question_service = QuestionService()
 router = APIRouter()
 
 
-@router.get("/questions")
+@router.get("/questions", tags=["Debug"])
 def get_questions():
     return question_service.get_all_questions()
 
 
-@router.post("/plan")
+@router.post("/plan", tags=["Planner"])
 def plan_questions(time_and_difficulty: PlanRequestSchema):
     plan_service = PlanService(time_and_difficulty)
     retriever_service = RetrieverService(plan_service)
@@ -31,11 +31,11 @@ def plan_questions(time_and_difficulty: PlanRequestSchema):
     return retriever_service.retrieve(db_retriever)
 
 
-@router.get("/questions/{question_id}")
+@router.get("/questions/{question_id}", tags=["Debug"])
 def get_question(question_id: str):
     return question_service.get_question_by_id(question_id)
 
 
-@router.post("/progress")
+@router.post("/progress", tags=["Progess"])
 def save_progress(payload: ProgressDataSchema):
     return progress_service.save_progress(payload)

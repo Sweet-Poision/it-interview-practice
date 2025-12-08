@@ -5,6 +5,10 @@ from app.core.logger import setup_logging
 
 setup_logging()
 
-app = FastAPI()
+app = FastAPI(
+    title="leetcode-problem-planner",
+    description="API for getting a set of questions from leetcode that were asked in some company",
+    version="0.0.1",
+)
 
 app.include_router(v1_router, prefix="/api/v1")
