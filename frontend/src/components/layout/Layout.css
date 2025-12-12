@@ -1,0 +1,80 @@
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Allow growth */
+    overflow-x: hidden;
+    /* Prevent horizontal scroll only */
+    position: relative;
+}
+
+.glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* More transparent for "Liquid Glass" effect */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-theme='dark'] .glass-nav {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.nav-content {
+    height: 72px;
+    /* Taller nav for premium feel */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.brand {
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.02em;
+}
+
+.brand-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.theme-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(4px);
+}
+
+.theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1) rotate(15deg);
+}
+
+.main-content {
+    flex: 1;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Center vertically if content is short */
+}

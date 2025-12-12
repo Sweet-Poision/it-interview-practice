@@ -1,0 +1,174 @@
+/* Base Layout */
+.app-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    /* Use min-height to allow scrolling if content overflows */
+    min-height: calc(100vh - 140px);
+    padding-bottom: 2rem;
+    /* Safety padding at bottom */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    /* Global layout smoothing */
+    transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+    min-height: calc(100vh - 140px);
+    padding-bottom: 2rem;
+    justify-content: center;
+}
+
+/* Global Transition Polish */
+/* Global Transition Polish - Optimized */
+button,
+a,
+input,
+.card,
+.glass-panel,
+svg {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 200ms;
+}
+
+/* Exclude things that shouldn't animate drastically or have own timing */
+.app-container,
+.controls-section,
+.start-btn,
+.time-unit,
+.difficulty-card {
+    transition-property: all;
+    /* Keep their specific transitions */
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 0 1rem;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.4;
+}
+
+/* Base styles for the control sections - Mobile First */
+.controls-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Desktop Layout - Unified Panel */
+@media (min-width: 1024px) {
+    .app-container {
+        max-width: 1100px;
+        /* Tighter than 1200 */
+        padding: 0 2rem;
+        flex-direction: row;
+        /* Side-by-side Hero vs Controls? No, keeping Hero top is better for flow */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-section {
+        margin-bottom: 3rem;
+    }
+
+    /* The Unified Glass Panel */
+    .controls-section {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr auto;
+        /* Add row for action bar */
+        gap: 0;
+
+        background: var(--glass-bg);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid var(--glass-border);
+        box-shadow: var(--shadow-2xl);
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        padding: 0;
+        height: auto;
+    }
+
+    /* FORCE CONTENT ABOVE DECORATION */
+    .controls-section>* {
+        position: relative;
+        z-index: 20;
+        /* Higher than ::after (stream) */
+    }
+
+
+
+    /* Left Panel: Time */
+    .controls-section> :first-child {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        padding: 4rem 3rem;
+        border-right: 1px solid var(--border-color);
+        background: linear-gradient(to right, rgba(255, 255, 255, 0.01), transparent);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        min-height: 400px;
+    }
+
+    /* Right Panel: Difficulty */
+    .controls-section> :nth-child(2) {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+        padding: 4rem 3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        min-height: 400px;
+    }
+
+    /* Action Bar (Footer) */
+    .action-bar {
+        grid-column: 1 / 3;
+        grid-row: 2 / 3;
+        padding: 2rem;
+        background: rgba(0, 0, 0, 0.02);
+        /* Subtle contrast */
+        border-top: 1px solid var(--border-color);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Smart Vertical Compaction for Short Screens (Laptops with Dock) */
+@media (min-width: 1024px) and (max-height: 850px) {
+    .app-container {
+        justify-content: flex-start;
+        /* Don't center, start from top to avoid cutting off top */
+        padding-top: 2rem;
+    }
+
+    .hero-section {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Compacting the padded areas inside the panel */
+    .controls-section> :first-child,
+    .controls-section> :nth-child(2) {
+        padding: 2rem 2rem;
+    }
+}
+
+/* Start Button Positioning override in App.jsx usually, but we need to spacing it */
+/* We might need to move StartButton INSIDE or BELOW the panel properly */

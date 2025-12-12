@@ -1,121 +1,318 @@
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-Thin.ttf") format("truetype");
-    font-weight: 100;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-ThinItalic.ttf") format("truetype");
-    font-weight: 100;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-Bold.ttf") format("truetype");
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-BoldItalic.ttf") format("truetype");
-    font-weight: 600;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-Light.ttf") format("truetype");
-    font-weight: 200;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-LightItalic.ttf") format("truetype");
-    font-weight: 200;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-Regular.ttf") format("truetype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-Black.ttf") format("truetype");
-    font-weight: 700;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-BlackItalic.ttf") format("truetype");
-    font-weight: 700;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "Lato";
-    src: url("./assets/fonts/Lato/Lato-Italic.ttf") format("truetype");
-    font-weight: 400;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: "callifornia";
-    src: url("./assets/fonts/Callifornia/Callifornia.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "lutfey";
-    src: url("./assets/fonts/lutfey-demo/LutfeyDEMO-Outline.otf")
-        format("opentype");
-    font-style: 400;
-    font-style: normal;
-}
-
 :root {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.01em;
-    box-sizing: border-box;
-    line-height: 1.3;
-    --primary-color: #92140c;
-    --secondary-color: #e75a7c;
-    --black: #0b0014;
-    --white: #f2f7f2;
-    --gray: #2e3138;
+  /* Apple System Font Stack */
+  --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "SF Mono", "Fira Code", "JetBrains Mono", "Roboto Mono", monospace;
+
+  /* Light Theme Variables (Apple-style) */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f7;
+  --bg-tertiary: #e5e5ea;
+  --bg-secondary-rgb: 245, 245, 247;
+  --bg-tertiary-rgb: 229, 229, 234;
+
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --text-tertiary: #a1a1a6;
+
+  --accent-color: #0071e3;
+  --accent-hover: #0077ed;
+  --accent-secondary: #8be9fd;
+  --accent-glow: rgba(0, 113, 227, 0.3);
+
+  --success: #34c759;
+  --error: #ff3b30;
+
+  --border-color: rgba(0, 0, 0, 0.1);
+
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(0, 0, 0, 0.08);
+  /* Darker border for light mode visibility */
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  /* Holographic Shadows */
+  --shadow-hologram:
+    0 0 0 1px rgba(255, 255, 255, 0.1),
+    0 10px 30px -10px rgba(189, 147, 249, 0.4);
+
+  /* Difficulty Colors */
+  --easy-color: #34c759;
+  --medium-color: #ff9500;
+  --hard-color: #ff3b30;
+
+  /* Shadows - Layered for depth */
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-2xl: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+  --shadow-float: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+
+  /* Glass */
+  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  --backdrop-blur: 20px;
+  --glass-blur: 20px;
+  --glass-saturation: 180%;
+
+  /* Spacing & Radius */
+  --font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  /* RGB Values for Gradients (so we can use alpha) */
+  --accent-rgb: 0, 113, 227;
+  --success-rgb: 52, 199, 89;
+  --warning-rgb: 255, 149, 0;
+  --error-rgb: 255, 59, 48;
 }
 
-a {
-    text-decoration: none;
+[data-theme='dark'] {
+  --bg-primary: #000000;
+  --bg-secondary: #1c1c1e;
+  --bg-tertiary: #2c2c2e;
+  --bg-secondary-rgb: 28, 28, 30;
+  --bg-tertiary-rgb: 44, 44, 46;
+
+  /* Dark Mode RGBs */
+  --accent-rgb: 10, 132, 255;
+  --success-rgb: 48, 209, 88;
+  --warning-rgb: 255, 159, 10;
+  --error-rgb: 255, 69, 58;
+
+
+  --text-primary: #f5f5f7;
+  --text-secondary: #86868b;
+  --text-tertiary: #636366;
+
+  --accent-color: #0a84ff;
+  --accent-hover: #409cff;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+
+  --glass-bg: rgba(0, 0, 0, 0.5);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  --shadow-float: 0 30px 60px -12px rgba(0, 0, 0, 0.6);
 }
 
-a:hover {
-    text-decoration: underline;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    background: var(--black);
-    color: var(--black);
-    margin: 0px 2em;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 16px;
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Animated Mesh Gradient Background */
+  background: radial-gradient(at 0% 0%, rgba(var(--accent-rgb), 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(var(--success-rgb), 0.1) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(var(--error-rgb), 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(var(--warning-rgb), 0.1) 0px, transparent 50%),
+    var(--bg-primary);
+  background-size: 200% 200%;
+  animation: meshFlow 20s ease infinite;
+  transition: background-color 0.5s ease;
+}
+
+@keyframes meshFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Ambient Background */
+.ambient-background-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
+  background-color: var(--bg-primary);
+  transition: background-color 0.5s ease;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  /* Liquid effect */
+  opacity: 0.6;
+  animation: float 20s infinite ease-in-out;
+}
+
+.orb-1 {
+  width: 60vh;
+  height: 60vh;
+  background: radial-gradient(circle, var(--accent-color), transparent 70%);
+  top: -10%;
+  left: -10%;
+  animation-delay: 0s;
+}
+
+.orb-2 {
+  width: 50vh;
+  height: 50vh;
+  background: radial-gradient(circle, var(--success-color), transparent 70%);
+  bottom: -10%;
+  right: -5%;
+  animation-delay: -5s;
+  opacity: 0.4;
+}
+
+.orb-3 {
+  width: 40vh;
+  height: 40vh;
+  background: radial-gradient(circle, var(--warning-color), transparent 70%);
+  top: 40%;
+  left: 40%;
+  animation-delay: -10s;
+  opacity: 0.3;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+}
+
+/* Noise Texture */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.03;
+  /* Subtle grain */
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opaciry='0.5'/%3E%3C/svg%3E");
+}
+
+/* Accessibility: Focus Rings */
+:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+  border-radius: 4px;
+  /* Default radius, specific components override */
+  z-index: 10;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Utilities */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--backdrop-blur));
+  -webkit-backdrop-filter: blur(var(--backdrop-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  border-radius: var(--radius-xl);
+}
+
+.title-large {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-medium {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--text-tertiary);
+  border-radius: 20px;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Global Utilities */
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
 }

@@ -1,0 +1,192 @@
+.start-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0;
+    /* Handled by action bar */
+    width: 100%;
+    max-width: 400px;
+}
+
+.animate-stagger-3 {
+    opacity: 0;
+    animation: fadeSlideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.3s;
+}
+
+/* The Torch Button */
+.start-btn {
+    position: relative;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 1.2rem 4rem;
+    border-radius: 9999px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    /* Contain particles */
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    box-shadow:
+        0 2px 20px rgba(0, 0, 0, 0.05),
+        0 2px 20px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    /* Fix for "Rectangle Behind" bug: Force hardware clipping */
+    transform: translateZ(0);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    width: 100%;
+}
+
+.icon-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.play-icon {
+    /* Optical adjustment */
+    margin-left: 2px;
+}
+
+.sparkle-icon {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    color: #ffd700;
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.start-btn:hover .sparkle-icon {
+    opacity: 1;
+    transform: scale(1) rotate(15deg);
+}
+
+/* Internal Glow Element */
+.button-glow {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 1;
+    transition: left 0.5s;
+}
+
+.start-btn:hover .button-glow {
+    left: 200%;
+    transition: left 0.8s ease-in-out;
+}
+
+/* Ripple Element */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.6);
+    width: 100px;
+    height: 100px;
+    margin-top: -50px;
+    margin-left: -50px;
+    animation: rippleEffect 0.6s linear;
+    transform: scale(0);
+    pointer-events: none;
+}
+
+@keyframes rippleEffect {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+.helper-text {
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+/* Enabled, Hover State - The "Warm Up" */
+.start-btn:not(:disabled):hover {
+    transform: translateY(-2px) scale(1.02);
+    color: white;
+    background: var(--accent-color);
+    border-color: transparent;
+    box-shadow:
+        0 10px 40px -10px var(--accent-color),
+        /* Primary Glow */
+        0 0 20px rgba(255, 255, 255, 0.4),
+        /* Inner scattering */
+        inset 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* "Torch" Active State - The Corona */
+.start-btn:not(:disabled):active {
+    transform: scale(0.98);
+    box-shadow:
+        0 0 60px 10px var(--accent-color),
+        /* Massive Corona */
+        0 0 100px 20px var(--accent-color),
+        inset 0 0 30px rgba(255, 255, 255, 0.8);
+    /* Core Intensity */
+}
+
+/* Particle / Noise Overlay */
+.start-btn::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+    opacity: 0;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    transition: opacity 0.3s;
+}
+
+.start-btn:not(:disabled):hover::before {
+    opacity: 0.3;
+    animation: noiseShift 8s linear infinite;
+}
+
+@keyframes noiseShift {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(10%, 10%);
+    }
+}
+
+/* Disabled State */
+.start-btn:disabled {
+    background: var(--bg-tertiary);
+    color: var(--text-tertiary);
+    cursor: not-allowed;
+    box-shadow: none;
+    animation: none;
+    opacity: 0.7;
+}
